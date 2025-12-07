@@ -1,7 +1,7 @@
 
 
 (function () {
-  //  Config utk Daily Quotes ubah2
+  //  Config utk Daily QUotes ubah2
   const QUOTES = [
     "Stay consistent. Small progress is still progress.",
     "Plan your day, then do the work — one task at a time.",

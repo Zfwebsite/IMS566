@@ -1,24 +1,24 @@
-
-
 :root{
 
+  /* MAIN COLORS */
   --main-start: #FF69B4;       
   --main-end:   #9400D3;       
-  --main-mid: #CC0099;  
+  --main-mid:   #CC0099;  
 
-  
   --purple: var(--main-end);       
   --purple-mid: var(--main-mid);   
   --purple-dark: #660099;  
   
   --uitm-gold: #ffc300;       
 
-  --blue: #4a6cf7;
-  --green: #3bb54a;
-  --red: #e53935;
+  /* FIXED COLOR VARIABLES */
+  --uitm-purple: #9400D3;
+  --uitm-blue:   #4a6cf7;
+  --uitm-green:  #3bb54a;
+  --uitm-red:    #e53935;
 
   /* Background UI */
- --bg-start: rgba(255, 105, 180, 0.12);  
+  --bg-start: rgba(255, 105, 180, 0.12);  
   --bg-end:   rgba(148, 0, 211, 0.04);   
 
   --card-radius: 20px;
@@ -76,7 +76,6 @@ a{
     font-size: 2.5rem; 
     color: #fff; 
 }
-/* Icon/logo */
 .brand-badge{
   width:68px;height:68px;
   border-radius:16px; 
@@ -140,9 +139,9 @@ a{
   box-shadow: 0 8px 16px rgba(184, 55, 172, 0.3);
 }
 
-/* NAVBAR style */
+/* NAVBAR */
 .navbar-premium{
-  background:#ffffff;
+  background: linear-gradient(135deg, #f5cad1, #FFFACD);
   border-bottom:1px solid rgba(34,34,34,0.06);
 }
 
@@ -158,7 +157,7 @@ a{
   transition: color 0.3s, transform 0.3s; 
   position: relative; 
 }
-/* Hover Effect */
+
 .navbar-premium .nav-link:hover{
   color: var(--main-mid); 
   transform: translateY(-1px); 
@@ -182,7 +181,6 @@ a{
 .navbar-premium .nav-link.active:hover {
   color:var(--main-mid); 
   font-weight:700;
-  transform: none; 
 }
 
 .navbar-premium .nav-link.active::after,
@@ -196,7 +194,7 @@ a{
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* DASHBOARD CARDS */
+/* CARDS */
 
 .uitm-card{
   background:#fff;
@@ -218,7 +216,7 @@ a{
   color:#fff;
   font-size:22px;
 }
-/* Card Icon Colors */
+
 .bg-purple{ background-color:var(--uitm-purple) !important; }
 .bg-blue{ background-color:var(--uitm-blue) !important; }
 .bg-green{ background-color:var(--uitm-green) !important; }
@@ -241,7 +239,7 @@ a{
   margin-right:5px;
 }
 
-/* TASK BADGES */
+/* TASK TABLE */
 .badge-danger{
   background-color: var(--uitm-red) !important;
 }
@@ -300,21 +298,17 @@ a{
     border-radius: 8px;
 }
 
-/* GRADIENT TEXT (NEW) */
+/* GRADIENT TEXT */
 .gradient-text-celebration {
     font-weight: 800;
     font-size: 2rem; 
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
     text-align: center;
     background: -webkit-linear-gradient(90deg, var(--main-start), var(--main-end));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: block; 
     text-shadow: 0 2px 4px rgba(0,0,0,0.15); 
 }
-
 
 /* BRAND SMALL ICON  */
 .brand-icon{
