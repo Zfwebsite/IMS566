@@ -201,27 +201,23 @@
       // Check for login
       if (!window.TaskApp.isLoggedIn()) { location.href='index.html'; return; }
 
-      // Set user details and year
+      // Utk Set user details and year
       document.getElementById('currentUser').textContent = window.TaskApp.getCurrentUserName();
       document.getElementById('year').textContent = new Date().getFullYear();
 
       document.getElementById('logoutBtn').addEventListener('click', function(){ window.TaskApp.logout(); location.href='index.html'; });
 
-      // The refresh logic is mostly handled by dashboard.js now, but the metrics update here
       function refreshAll(){
         const stats = window.TaskApp.getStats();
         document.getElementById('totalTasks').textContent = stats.total;
         document.getElementById('completedTasks').textContent = stats.completed;
         document.getElementById('completionRate').textContent = (stats.total === 0 ? '0%' : Math.round((stats.completed/stats.total)*100) + '%');
 
-        // Charts are rendered via TaskApp API
         window.TaskApp.renderPriorityDonut('priorityDonut');
         window.TaskApp.renderProgressRadial('progressRadial');
         window.TaskApp.renderWeeklyArea('weeklyArea');
-        // Upcoming list handled by dashboard.js, but ensures the TaskApp data is available
       }
 
-      // Quick Add handler (it will automatically trigger refresh in dashboard.js via the wrapper)
       document.getElementById('quickAddForm').addEventListener('submit', function(e){
         e.preventDefault();
         const t = {
@@ -232,10 +228,9 @@
         if (!t.title) return alert('Please enter task title.');
         window.TaskApp.addTask(t);
         this.reset();
-        refreshAll(); // Force a refresh of local metrics immediately
+        refreshAll(); 
       });
 
-      // Initial load: The `dashboard.js` init() will handle the main refresh, but this ensures local elements are set
       refreshAll();
     })();
   </script>
