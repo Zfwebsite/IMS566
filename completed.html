@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TaskManager • Completed</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-white shadow-sm navbar-premium">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-800 ms-2 brand-serif" href="dashboard.html"><span class="brand-icon"><i class="bi bi-list-check"></i></span> TaskManager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto ms-3">
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="tasks.html">Tasks</a></li>
+          <li class="nav-item"><a class="nav-link active" href="completed.html">Completed</a></li>
+        </ul>
+        <div class="d-flex align-items-center me-3">
+          <div class="me-3 text-end d-none d-md-block">
+            <div class="small text-muted">Signed in as</div>
+            <div id="currentUser" class="fw-600"></div>
+          </div>
+          <button id="logoutBtn" class="btn btn-outline-gradient-uitm"><i class="bi bi-box-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="dashboard-header py-5 text-center text-white">
+      <h1 class="fw-bold display-5">Completed Tasks</h1>
+      <p class="mt-2">Stay organised • Stay productive • Stay ahead</p>
+  </section>
+
+  <main class="container my-4">
+    
+    <div id="congratsMessageContainer" class="text-center mb-4">
+        </div>
+    
+    <div class="card shadow-sm rounded-3 mt-3">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table id="completedTable" class="table table-hover align-middle mb-0 table-task-list">
+            <thead>
+              <tr><th>Task</th><th>Completed On</th><th>Priority</th><th>Subject</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-4 text-center text-muted small">
+      &copy; <span id="year"></span> All right reserve ZF group
+    </footer>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <script>
+    (function() {
+      if (!window.TaskApp.isLoggedIn()) { location.href='index.html'; return; }
+      document.getElementById('currentUser').textContent = window.TaskApp.getCurrentUserName();
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.getElementById('logoutBtn').addEventListener('click', function(){ window.TaskApp.logout(); location.href='index.html'; });
+
+      // NEW: Ribbon/Streamer-like Confetti Function (Lebih menyeluruh & efek juara)
+      function launchSpectacularRibbons() {
+        if (typeof confetti !== 'undefined') {
+            const ribbonConfig = {
+                particleCount: 150,
+                spread: 90,
+                startVelocity: 40,
+                ticks: 120,
+                zIndex: 9999,
+                gravity: 0.6,
+                decay: 0.92,
+                shapes: ['circle', 'square', 'star'], // Campuran bentuk
+                scalar: 1.2,
+                colors: ['#FF69B4', '#9400D3', '#FFC300', '#FFFFFF'] // Warna tema + Putih
+            };
+
+            // Letupan Kiri (Lebih berselerak)
+            confetti(Object.assign({}, ribbonConfig, {
+                origin: { x: 0.1, y: 0.8 },
+                angle: 120,
+                spread: 60
+            }));
+
+            // Letupan Kanan (Lebih berselerak)
+            confetti(Object.assign({}, ribbonConfig, {
+                origin: { x: 0.9, y: 0.8 },
+                angle: 60,
+                spread: 60
+            }));
+
+            // Letupan Juara/Trophy tengah (Velocity lebih tinggi, fokus emas)
+            confetti(Object.assign({}, ribbonConfig, {
+                particleCount: 80,
+                spread: 30,
+                startVelocity: 60,
+                ticks: 100,
+                origin: { x: 0.5, y: 0.4 },
+                colors: ['#FFC300', '#FFD700', '#FFFFFF'],
+                scalar: 1.5,
+                shapes: ['star']
+            }));
+        }
+      }
+
+      function refresh(){
+        window.TaskApp.renderCompletedTable('completedTable');
+        const stats = window.TaskApp.getStats();
+        const msgContainer = document.getElementById('congratsMessageContainer');
+        const completedFlag = sessionStorage.getItem('celebrate_completion');
+
+        // Logic untuk Teks Gradien
+        if (stats.completed > 0) {
+            msgContainer.innerHTML = `<h2 class="gradient-text-celebration">Congratss! You have completed ${stats.completed} tasks so far.</h2>`;
+        } else {
+            msgContainer.innerHTML = '';
+        }
+
+        // Logic untuk Mencetuskan Kesan (Hanya sekali selepas markComplete dipanggil di tasks.html)
+        if (completedFlag === 'true') {
+            // Jalankan kesan perayaan
+            launchSpectacularRibbons();
+            
+            // Padamkan bendera supaya tidak dicetuskan lagi pada refresh seterusnya
+            sessionStorage.removeItem('celebrate_completion');
+        }
+      }
+      
+      // Initial check and celebration
+      refresh();
+
+      document.querySelector('#completedTable tbody').addEventListener('click', function(e){
+        const t = e.target;
+        if (t.closest('.reopen-task')) { 
+          window.TaskApp.reopenTask(t.closest('[data-id]').dataset.id || t.dataset.id); 
+          refresh(); 
+        }
+        else if (t.closest('.delete-task')) { 
+          if (confirm('Delete permanently?')) { 
+            window.TaskApp.deleteTask(t.closest('[data-id]').dataset.id || t.dataset.id); 
+            refresh(); 
+          } 
+        }
+      });
+    })();
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
