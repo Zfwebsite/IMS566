@@ -25,7 +25,7 @@ TaskManager Premium is designed to help students manage their assignments and ta
 | :--- | :--- | :--- |
 | **Frontend** | HTML5, CSS3, JavaScript | Core Application Structure and Logic |
 | **Framework** | [Bootstrap 5.3](https://getbootstrap.com/) | CSS Framework & UI Components (Mobile) |
-| **Icons** | [Bootstrap Icons](https://icons.getbootstrap.com/) |
+| **Icons** | [Bootstrap Icons](https://icons.getbootstrap.com/) | Icons for Card
 | **Data Visualization** | [ApexCharts](https://apexcharts.com/) | Creating Interactive Dashboard Charts |
 | **Styling** | CSS Variables | Efficient Theme and Color Management |
 
