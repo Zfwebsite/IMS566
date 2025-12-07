@@ -1,10 +1,10 @@
-# TaskManager by ZF group
+# TaskManager by ZF Group
 
 A simple and modern task management web application built primarily for student use. This project features a premium UI design with an attractive Purple-Pink gradient theme, interactive data visualizations, and client-side data persistence.
 
 ## Key Features
 
-TaskManager Premium is designed to help students manage their assignments and tasks efficiently.
+TaskManager Premium is designed to help students manage their assignments and tasks more efficiently and professionally.
 
 ### Dashboard and Analytics
 * **Data Visualization**: Utilizes **ApexCharts** to display statistics on pending tasks by priority (Donut Chart) and overall completion rate (Radial Bar).
@@ -24,8 +24,8 @@ TaskManager Premium is designed to help students manage their assignments and ta
 | Category | Technology | Purpose |
 | :--- | :--- | :--- |
 | **Frontend** | HTML5, CSS3, JavaScript | Core Application Structure and Logic |
-| **Framework** | [Bootstrap 5.3](https://getbootstrap.com/) | CSS Framework & UI Components (Mobile-First) |
-| **Icons** | [Bootstrap Icons](https://icons.getbootstrap.com/) | Icons (used for the Dark Mode Toggle) |
+| **Framework** | [Bootstrap 5.3](https://getbootstrap.com/) | CSS Framework & UI Components (Mobile) |
+| **Icons** | [Bootstrap Icons](https://icons.getbootstrap.com/) |
 | **Data Visualization** | [ApexCharts](https://apexcharts.com/) | Creating Interactive Dashboard Charts |
 | **Styling** | CSS Variables | Efficient Theme and Color Management |
 
