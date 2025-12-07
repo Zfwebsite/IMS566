@@ -72,7 +72,7 @@
       document.getElementById('year').textContent = new Date().getFullYear();
       document.getElementById('logoutBtn').addEventListener('click', function(){ window.TaskApp.logout(); location.href='index.html'; });
 
-      // NEW: Ribbon/Streamer-like Confetti Function (Lebih menyeluruh & efek juara)
+      // reben bagi lebih banyak
       function launchSpectacularRibbons() {
         if (typeof confetti !== 'undefined') {
             const ribbonConfig = {
@@ -83,9 +83,9 @@
                 zIndex: 9999,
                 gravity: 0.6,
                 decay: 0.92,
-                shapes: ['circle', 'square', 'star'], // Campuran bentuk
+                shapes: ['circle', 'square', 'star'], 
                 scalar: 1.2,
-                colors: ['#FF69B4', '#9400D3', '#FFC300', '#FFFFFF'] // Warna tema + Putih
+                colors: ['#FF69B4', '#9400D3', '#FFC300', '#FFFFFF'] 
             };
 
             // Letupan Kiri (Lebih berselerak)
@@ -122,24 +122,20 @@
         const msgContainer = document.getElementById('congratsMessageContainer');
         const completedFlag = sessionStorage.getItem('celebrate_completion');
 
-        // Logic untuk Teks Gradien
+        // Gradient teks
         if (stats.completed > 0) {
             msgContainer.innerHTML = `<h2 class="gradient-text-celebration">Congratss! You have completed ${stats.completed} tasks so far.</h2>`;
         } else {
             msgContainer.innerHTML = '';
         }
 
-        // Logic untuk Mencetuskan Kesan (Hanya sekali selepas markComplete dipanggil di tasks.html)
+        // Untuk keluarkan ribbon, celebration theme lepas user selesaikan 1 tasks
         if (completedFlag === 'true') {
-            // Jalankan kesan perayaan
             launchSpectacularRibbons();
-            
-            // Padamkan bendera supaya tidak dicetuskan lagi pada refresh seterusnya
             sessionStorage.removeItem('celebrate_completion');
         }
       }
       
-      // Initial check and celebration
       refresh();
 
       document.querySelector('#completedTable tbody').addEventListener('click', function(e){
